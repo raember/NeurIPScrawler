@@ -110,6 +110,19 @@ if __name__ == '__main__':
     ff.request_timeout = timedelta(0, 0.2)
     ff.adapter = FileCacheAdapter()
     papers = list(map(get_paper, [ff], get_paper_entries(ff, year)))
+    auth_to_paper = {}
+    # for paper_entry in get_paper_entries(ff, year):
+    #     for author in paper_entry.authors:
+    #         authored_papers = auth_to_paper.get(author, [])
+    #         authored_papers.append(paper_entry)
+    #         auth_to_paper[author] = authored_papers
+    # for author, coauthored_papers in sorted(auth_to_paper.items(), key=lambda kvp: len(kvp[1]), reverse=True):
+    #     if len(coauthored_papers) == 1:
+    #         break
+    #     print(f"{author} co-authored {len(coauthored_papers)} papers:")
+    #     for coauthored_paper in coauthored_papers:
+    #         print(f"  - {coauthored_paper}")
+    # exit(0)
     for paper_entry in get_paper_entries(ff, year):
         print(f"Processing: {paper_entry}")
         paper = get_paper(ff, paper_entry)
