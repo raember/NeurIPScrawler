@@ -2,6 +2,7 @@
 import re
 import unicodedata
 from datetime import timedelta
+from os import remove
 from os.path import splitext
 from pathlib import Path
 from typing import List
@@ -226,6 +227,7 @@ if __name__ == '__main__':
             try:
                 with ZipFile(supplemental, 'r') as f:
                     f.extractall(extraction_path)
+                remove(supplemental)
             except BadZipFile:
                 # https://papers.nips.cc/paper/2020/hash/95424358822e753eb993c97ee76a9076-Abstract.html
                 print("        !!! Failed to unzip faulty zip file !!!!")
