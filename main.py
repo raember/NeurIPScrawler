@@ -109,8 +109,7 @@ if __name__ == '__main__':
     ff = Firefox()
     ff.request_timeout = timedelta(0, 0.2)
     ff.adapter = FileCacheAdapter()
-    papers = list(map(get_paper, [ff], get_paper_entries(ff, year)))
-    auth_to_paper = {}
+    # auth_to_paper = {}
     # for paper_entry in get_paper_entries(ff, year):
     #     for author in paper_entry.authors:
     #         authored_papers = auth_to_paper.get(author, [])
