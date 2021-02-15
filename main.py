@@ -162,53 +162,53 @@ if __name__ == '__main__':
         paper_home = Path('out', str(year), slugify(paper_entry.title))
         paper_home.mkdir(parents=True, exist_ok=True)
 
-        # print(f"    Writing Authors")
-        # authors = Path(paper_home, 'Authors.txt')
-        # with open(authors, 'w') as f:
-        #     f.write('\n'.join(paper_entry.authors))
-        #
-        # # Exactly two papers (2020) don't have an author feedback:
-        # # https://papers.nips.cc/paper/2020/hash/7ac52e3f2729d1b3f6d2b7e8f6467226-Abstract.html
-        # # https://papers.nips.cc/paper/2020/hash/d6f1dd034aabde7657e6680444ceff62-Abstract.html
-        # if paper.author_feedback_url is not None:
-        #     print(f"    Downloading Author Feedback")
-        #     _, ext = splitext(paper.author_feedback_url.path)
-        #     assert(ext == '.pdf')
-        #     author_feedback = Path(paper_home, 'AuthorFeedback.pdf')
-        #     with open(author_feedback, 'wb') as f:
-        #         f.write(ff.get(paper.author_feedback_url.url).content)
-        # else:
-        #     no_author_feedback += 1
-        #
-        # print(f"    Downloading Bibtex Entry")
-        # _, ext = splitext(paper.bibtex_url.path)
-        # assert(ext == '.bib')
-        # bibtex = Path(paper_home, 'Bibtex.bib')
-        # with open(bibtex, 'wb') as f:
-        #     f.write(ff.get(paper.bibtex_url.url).content)
-        #
-        # print(f"    Downloading Meta Review")
-        # _, ext = splitext(paper.meta_review_url.path)
-        # assert(ext == '.html')
-        # meta_review = Path(paper_home, 'MetaReview.html')
-        # meta_review_html = BeautifulSoup(ff.get(paper.meta_review_url.url).text, features="html5lib")
-        # with open(meta_review, 'w') as f:
-        #     f.write(meta_review_html.select_one('body > p').text)
-        #
-        # print(f"    Downloading Paper")
-        # _, ext = splitext(paper.paper_url.path)
-        # assert(ext == '.pdf')
-        # paper_pdf = Path(paper_home, 'Paper.pdf')
-        # with open(paper_pdf, 'wb') as f:
-        #     f.write(ff.get(paper.paper_url.url).content)
-        #
-        # print(f"    Downloading Review")
-        # _, ext = splitext(paper.review_url.path)
-        # assert(ext == '.html')
-        # review = Path(paper_home, 'Review.html')
-        # review_html = BeautifulSoup(ff.get(paper.review_url.url).text, features="html5lib")
-        # with open(review, 'w') as f:
-        #     f.write(review_html.select_one('body > p').text)
+        print(f"    Writing Authors")
+        authors = Path(paper_home, 'Authors.txt')
+        with open(authors, 'w') as f:
+            f.write('\n'.join(paper_entry.authors))
+
+        # Exactly two papers (2020) don't have an author feedback:
+        # https://papers.nips.cc/paper/2020/hash/7ac52e3f2729d1b3f6d2b7e8f6467226-Abstract.html
+        # https://papers.nips.cc/paper/2020/hash/d6f1dd034aabde7657e6680444ceff62-Abstract.html
+        if paper.author_feedback_url is not None:
+            print(f"    Downloading Author Feedback")
+            _, ext = splitext(paper.author_feedback_url.path)
+            assert (ext == '.pdf')
+            author_feedback = Path(paper_home, 'AuthorFeedback.pdf')
+            with open(author_feedback, 'wb') as f:
+                f.write(ff.get(paper.author_feedback_url.url).content)
+        else:
+            no_author_feedback += 1
+
+        print(f"    Downloading Bibtex Entry")
+        _, ext = splitext(paper.bibtex_url.path)
+        assert (ext == '.bib')
+        bibtex = Path(paper_home, 'Bibtex.bib')
+        with open(bibtex, 'wb') as f:
+            f.write(ff.get(paper.bibtex_url.url).content)
+
+        print(f"    Downloading Meta Review")
+        _, ext = splitext(paper.meta_review_url.path)
+        assert (ext == '.html')
+        meta_review = Path(paper_home, 'MetaReview.html')
+        meta_review_html = BeautifulSoup(ff.get(paper.meta_review_url.url).text, features="html5lib")
+        with open(meta_review, 'w') as f:
+            f.write(meta_review_html.select_one('body > p').text)
+
+        print(f"    Downloading Paper")
+        _, ext = splitext(paper.paper_url.path)
+        assert (ext == '.pdf')
+        paper_pdf = Path(paper_home, 'Paper.pdf')
+        with open(paper_pdf, 'wb') as f:
+            f.write(ff.get(paper.paper_url.url).content)
+
+        print(f"    Downloading Review")
+        _, ext = splitext(paper.review_url.path)
+        assert (ext == '.html')
+        review = Path(paper_home, 'Review.html')
+        review_html = BeautifulSoup(ff.get(paper.review_url.url).text, features="html5lib")
+        with open(review, 'w') as f:
+            f.write(review_html.select_one('body > p').text)
 
         if paper.supplemental_url is None:
             no_supplemental_material += 1
