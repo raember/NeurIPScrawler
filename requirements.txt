@@ -1,0 +1,9 @@
+urllib3
+requests
+bs4
+html5lib
+pillow
+spoofbot
+publicsuffix2
+hurry
+slugify
