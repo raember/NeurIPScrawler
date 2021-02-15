@@ -162,6 +162,11 @@ if __name__ == '__main__':
         paper_home = Path('out', str(year), slugify(paper_entry.title))
         paper_home.mkdir(parents=True, exist_ok=True)
 
+        print(f"    Saving Abstract")
+        abstract = Path(paper_home, 'Abstract.txt')
+        with open(abstract, 'w') as f:
+            f.write(paper.abstract)
+
         print(f"    Writing Authors")
         authors = Path(paper_home, 'Authors.txt')
         with open(authors, 'w') as f:
